@@ -21,7 +21,7 @@ io.on('connection', socket => {
 
     socket.on('createMessage', (message, callback) => {
         console.log('New message', message);
-        io.emit('newMessage', generateMessage(message.from, message.text));
+        io.sockets.emit('newMessage', generateMessage(message.from, message.text));
         callback();
     });
 
@@ -32,6 +32,7 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('User disconnected');
     });
+
 });
 
 server.listen(port, () => console.log(`Server is up on port ${port}`));
