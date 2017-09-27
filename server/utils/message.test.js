@@ -8,10 +8,8 @@ describe('generateMessage', () => {
         let text = 'Some message';
         let message = generateMessage(from, text);
 
-        // expect(message.createdAt).toBeA('number');
-        // expect(message).toInclude({ from, text });
-        expect(message.from).toBe(from);
-        expect(message.text).toBe(text);
+        expect(message.createdAt).toBeA('number');
+        expect(message).toInclude({ from, text });
     });
 })
 
@@ -23,7 +21,7 @@ describe('generateLocationMessage', () => {
         let url = 'https://www.google.com/maps?q=28,4';
         let message = generateLocationMessage(from, latitude, longitude);
 
-        // expect(message).toInclude({ from, url });
-        expect(message.url).toBe(url);
+        expect(message.createdAt).toBeA('number');
+        expect(message).toInclude({ from, url });
     });
 });
