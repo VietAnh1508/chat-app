@@ -17,11 +17,16 @@ let users = new Users();
 app.use(express.static(publicPath));
 
 io.on('connection', socket => {
-    console.log('New user connected');
 
     socket.on('join', (params, callback) => {
+        console.log(`${params.name} connected`);
+
+        let currentUserList = users.getUserList(params.room);
+
         if (!isRealString(params.name) || !isRealString(params.room)) {
             return callback('Name and room name are required!');
+        } else if (currentUserList.includes(params.name)) {
+            return callback('This name has been taken, please choose another name!');
         }
 
         socket.join(params.room);
