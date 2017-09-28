@@ -2,32 +2,90 @@
 <html>
 
 <head>
-    <title>Join | ChatApp</title>
+    <title>ChatApp</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/image/chat.ico">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/jquery-3.2.1.min.js"></script>
+    <script src="/js/libs/mustache.js"></script>
+    <script src="/js/libs/moment.js"></script>
+    <script src="/js/index.js"></script>
 </head>
 
-<body class="centered-form">
-    <div class="centered-form__form">
-        <form action="/chat.html">
-            <div class="form-field">
-                <h3>Join a Chat</h3>
-            </div>
-            <div class="form-field">
-                <label for="name">Display name</label>
-                <input type="text" name="name" autofocus/>
-            </div>
-            <div class="form-field">
-                <label for="room">Room name</label>
-                <input type="text" name="room"/>
-            </div>
-            <div class="form-field">
-                <button>Join</button>
-            </div>
-        </form>
-
+<body>
+    <div id="join-form" class="centered-form">
+        <div class="centered-form__form">
+            <form id="join-room">
+                <div class="form-field">
+                    <h3>Join a Chat</h3>
+                </div>
+                <div class="form-field">
+                    <label>Display name</label>
+                    <input type="text" name="username" autofocus autocomplete="off" />
+                </div>
+                <div class="form-field">
+                    <label>Choose room</label>
+                    <select id="room-list">
+                        <option>-- Pick a room --</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Room name</label>
+                    <input type="text" name="room" autocomplete="off" placeholder="Enter another name to create a new room"/>
+                </div>
+                <div class="form-field">
+                    <button>Join</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <div id="chat-form" class="chat">
+        <div class="chat__sidebar">
+            <h3 id="room-name"></h3>
+            <div id="users"></div>
+        </div>
+        <div class="chat__main">
+            <ol id="messages" class="chat__messages"></ol>
+
+            <div class="chat__footer">
+                <div id="user-typing" class="user-typing"></div>
+                <form id="message-form">
+                    <input type="text" name="message" placeholder="Message" autofocus autocomplete="off" />
+                    <button>Send</button>
+                </form>
+                <button id="send-location">Send location</button>
+            </div>
+        </div>
+
+        <script id="message-template" type="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <h4>{{from}}</h4>
+                    <span>{{createdAt}}</span>
+                </div>
+                <div class="message__body">
+                    <p>{{text}}</p>
+                </div>
+            </li>
+        </script>
+
+        <script id="location-message-template" type="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <h4>{{from}}</h4>
+                    <span>{{createdAt}}</span>
+                </div>
+                <div class="message__body">
+                    <a href="{{url}}" target="_blank">My current location<a>
+                </div>
+            </li>
+        </script>
+    </div>
+
 </body>
 
 </html>

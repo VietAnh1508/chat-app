@@ -58,7 +58,7 @@
     border-radius: 5px;
     padding: 0px 20px;
     margin: 20px;
-    width: 230px;
+    width: 350px;
   }
   
   .form-field {
@@ -125,9 +125,16 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
+
+  .user-typing {
+    color: rgb(155, 150, 150);
+    font-style: italic;
+    position: absolute;
+    bottom: 40px;
+  }
   
   .chat__footer {
-    background: #e6eaee;
+    background: #fff;
     display: flex;
     padding: 10px;
     /*height: 60px;*/

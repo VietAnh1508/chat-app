@@ -78,4 +78,10 @@ describe('Users', () => {
         expect(userList).toEqual(['Jen']);
     });
 
+    it('should return room list', () => {
+        let roomList = users.getRoomList();
+
+        expect(roomList).toEqual(['Node Course', 'React Course']);
+    })
+
 });

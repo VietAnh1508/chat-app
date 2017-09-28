@@ -26,8 +26,12 @@ class Users {
 
     getUserList (room) {
         let users = this.users.filter(user =>  user.room === room);
-        let namesArray = users.map(user => user.name);
-        return namesArray;
+        return users.map(user => user.name);
+    }
+
+    getRoomList () {
+        let allRooms = this.users.map(user => user.room);
+        return allRooms.filter((room, index, allRooms) => allRooms.indexOf(room) == index);
     }
 
 }
